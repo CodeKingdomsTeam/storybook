@@ -85,7 +85,9 @@ export default class KnobManager {
     setTimeout(() => {
       this.calling = false;
       // emit to the channel and trigger a panel re-render
-      this.channel.emit('addon:knobs:setKnobs', { knobs: this.knobStore.getAll(), timestamp });
+      if( this.channel ) {
+          this.channel.emit('addon:knobs:setKnobs', { knobs: this.knobStore.getAll(), timestamp });
+      }
     }, PANEL_UPDATE_INTERVAL);
   }
 }
